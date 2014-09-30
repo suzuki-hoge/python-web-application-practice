@@ -29,7 +29,7 @@ print "<p>status : <select name=status>"
 print "<option value='1' %s>not yet</option>" % ('selected' if status == 1 else '')
 print "<option value='2' %s>doing</option>" % ('selected' if status == 2 else '')
 print "<option value='3' %s>done</option>" % ('selected' if status == 3 else '')
-print '</select>'
+print '</select></p>'
 print "<p><input type='submit' value='send'></p>"
 print "</form>"
 
