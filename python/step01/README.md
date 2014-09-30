@@ -9,6 +9,7 @@ CGIHTTPServer.test()
 ```HTML
 <p>Hello world</p>
 ```
+[http://localhost:8000/](http://localhost:8000/)
 ##URLごとに違うpythonスクリプトを実行できるようにしてみましょう
 *cgi-bin/list.py*
 ```Python
@@ -16,7 +17,8 @@ CGIHTTPServer.test()
 print "Content-type: text/html\n"
 print 'my first app'
 ```
-**権限を755にする必要があります**
+**権限を755にする必要があります**  
+[http://localhost:8000/cgi-bin/list.py](http://localhost:8000/cgi-bin/list.py)
 ##GETパラメータを拾えるようにしてみましょう
 *cgi-bin/list.py*
 ```Python
@@ -27,4 +29,5 @@ id = form.getvalue('id', 'no id')
 
 print 'id : %s' % id
 ```
-**list.py や list.py?id=3 で出力がかわることを確認しましょう**
+[http://localhost:8000/cgi-bin/list.py](http://localhost:8000/cgi-bin/list.py)  
+[http://localhost:8000/cgi-bin/list.py?id=1](http://localhost:8000/cgi-bin/list.py?id=1)

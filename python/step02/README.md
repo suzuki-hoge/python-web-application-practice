@@ -1,20 +1,20 @@
 ##データベースを作ってみましょう
 ```Bash
-sqlite3 todo.db
-create table story(id integer primary key autoincrement, body varchar(32), end datetime, status int);
+> sqlite3 todo.db
+sqlite> create table story(id integer primary key autoincrement, body varchar(32), end datetime, status int);
 ```
 確認コマンド**select * from story;**
 ##データの追加をしてみましょう
 ```Bash
-insert into story(body, end, status) values('sample', '2014-09-30 17:15:00', 1);
+sqlite> insert into story(body, end, status) values('sample', '2014-09-30 17:15:00', 1);
 ```
 ##データの更新をしてみましょう
 ```Bash
-update story set status = 2 where id = 3;
+sqlite> update story set status = 2 where id = 3;
 ```
 ##データの削除をしてみましょう
 ```Bash
-delete from story where id = 3;
+sqlite> delete from story where id = 3;
 ```
 ##pythonを通して一覧を取得してみましょう
 *workspace.py*
