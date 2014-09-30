@@ -2,13 +2,8 @@
 *list.py*
 ```Python
 rows = db.execute('select * from story')
-
-id = row[0]
-body = row[1]
-end = row[2]
-status = row[3]
-print '<p>%s : %s (%s) - %s</p>' % (id, body, end, status)
-print '<hr>'
+for row in rows:
+    print '<p>%s</p>' % str(row)
 ```
 ##画面に詳細を表示してみましょう
 *list.py*
