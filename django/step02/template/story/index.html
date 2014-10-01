@@ -1,0 +1,18 @@
+{% for story in story_list %}
+	<p>
+		<form action='/story/delete/{{ story.id }}' method='post'>
+			{{ story.body }}
+
+			<a href='/story/update/{{ story.id }}'>story-update</a>
+
+			{% csrf_token %}
+			<input type='submit' value='story-delete'>
+		</form>
+	</p>
+	{% for task in story.task_set.all %}
+		<p>{{ task.body }}</p>
+	{% endfor %}
+	<hr>
+{% endfor %}
+
+<a href='/story/create'>story-create</a>

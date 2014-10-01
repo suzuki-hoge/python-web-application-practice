@@ -56,3 +56,5 @@ target/
 # sqlite3
 todo.db
 db.sqlite3
+
+.DS_Store
