@@ -55,3 +55,4 @@ target/
 
 # sqlite3
 todo.db
+db.sqlite3

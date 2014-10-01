@@ -23,8 +23,7 @@ tasks = db.execute('select * from task where storyid = %s' % storyId)
 print '%s%s : %s (%s) - %s' % ('&nbsp;' * 8, taskId, taskBody, taskEnd, taskStatus)
 ```
 ##ストーリごとのタスクを追加してみましょう
-**画面イメージ**  
-[list.png](https://github.com/tenshiPure/pyweb/blob/master/python/step05/images/list.png)
+[画面イメージ](https://github.com/tenshiPure/pyweb/blob/master/python/step05/images/list.png)  
 *cgi-bin/list.py*
 ```Python
 print "%s<a href='taskform.py?storyid=%s'>task-add</a>" % ('&nbsp;' * 8, storyId)
