@@ -11,11 +11,7 @@ print '<html><body>'
 import sqlite3
 db = sqlite3.connect('todo.db')
 
-id = form.getvalue('id', '')
-if id == '':
-	rows = db.execute('select * from story')
-else:
-	rows = db.execute('select * from story where id = %s' % id)
+rows = db.execute('select * from story')
 for row in rows:
 	print '<p>%s</p>' % str(row)
 

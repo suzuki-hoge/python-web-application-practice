@@ -25,17 +25,24 @@ print "<p><input type='submit' value='send'></p>"
 print "</form>"
 ```
 **id指定がないので空の入力欄を表示するだけでOKです**  
-**sendボタンを押すとlocalhost/cgi-bin/formsubmit.pyに遷移すれば成功です(404になります）**
+**sendボタンを押すとlocalhost:8000/cgi-bin/formsubmit.pyに遷移すれば成功です(404になります）**
 [http://localhost:8000/cgi-bin/form.py](http://localhost:8000/cgi-bin/form.py)
 ##追加の保存処理を作ってみましょう
 *cgi-bin/formsubmit.py*
 ```Python
+import os
+if os.environ['REQUEST_METHOD'] == "POST":
+~~
 sql = "insert into story(body, end, status) values('%s', '%s', '%s')" % (body, end, status)
 cursor = db.cursor()
 cursor.execute(sql)
 db.commit()
+~~
+print "Content-type: text/html\n"
+print "<meta http-equiv='refresh' content='0;URL=http://localhost:8000/cgi-bin/list.py'>"
 ```
-[http://localhost:8000/cgi-bin/formsubmit.py](http://localhost:8000/cgi-bin/formsubmit.py)
+**sendボタンを押してlocalhost:8000/cgi-bin/list.pyに戻ってくれば成功です**
+[http://localhost:8000/cgi-bin/form.py](http://localhost:8000/cgi-bin/form.py)
 ##編集する画面を作ってみましょう
 *cgi-bin/form.py*
 ```Python
@@ -56,7 +63,7 @@ sql = "update story set body = '%s', end = '%s', status = '%s' where id = %s" % 
 cursor = db.cursor()
 cursor.execute(sql)
 ```
-[http://localhost:8000/cgi-bin/formsubmit.py?id=1](http://localhost:8000/cgi-bin/formsubmit.py?id=1)
+[http://localhost:8000/cgi-bin/form.py?id=1](http://localhost:8000/cgi-bin/form.py?id=1)
 ##削除処理を作ってみましょう
 *cgi-bin/deletesubmit.py*
 ```Python
