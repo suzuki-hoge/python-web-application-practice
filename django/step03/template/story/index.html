@@ -1,0 +1,28 @@
+{% for story in story_list %}
+	<p>
+		<form action='/story/delete/{{ story.id }}' method='post'>
+			{{ story.body }}
+
+			<a href='/story/update/{{ story.id }}'>story-update</a>
+
+			{% csrf_token %}
+			<input type='submit' value='story-delete'>
+		</form>
+	</p>
+	{% for task in story.task_set.all %}
+		<p>
+			<form action='/task/delete/{{ task.id }}' method='post'>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ task.body }}
+
+			<a href='/task/update/{{ task.id }}'>task-update</a>
+
+			{% csrf_token %}
+			<input type='submit' value='task-delete'>
+		</form>
+		</p>
+	{% endfor %}
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='/task/create/{{ story.id }}'>task-create</a>
+	<hr>
+{% endfor %}
+
+<a href='/story/create'>story-create</a>
