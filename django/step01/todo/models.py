@@ -12,7 +12,7 @@ class Task(models.Model):
 	body = models.CharField(max_length = 32)
 	end = models.DateTimeField()
 	status = models.IntegerField()
-	storyId = models.ForeignKey(Story)
+	story = models.ForeignKey(Story)
 
 	def __unicode__(self):
 		return '%s : %s' % (self.id, self.body)

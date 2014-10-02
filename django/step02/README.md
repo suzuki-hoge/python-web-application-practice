@@ -5,7 +5,7 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'template'),
 )
 ```
-*step02/settings.py*
+*step02/urls.py*
 ```Python
 from django.views.generic import *
 from todo.models import *
@@ -56,8 +56,8 @@ url(r'^story/delete/(?P<pk>\d+)$',
 ```HTML
 {{ form.as_p }}
 ```
-**生成されたHTMLを確認してみましょう**
-**削除画面はまだ確認できません**
+**生成されたHTMLを確認してみましょう**  
+**削除画面はまだ確認できません**  
 [http://localhost:8000/story/create](http://localhost:8000/story/create)  
 [http://localhost:8000/story/update/1](http://localhost:8000/story/update/1)
 ##各種ボタンを配置してみましょう

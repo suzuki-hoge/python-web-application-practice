@@ -1,11 +1,11 @@
 ##ストーリ関連のファイルをリネームして、タスク関連のファイルを作成しましょう
 ```Bash
-> mv form.py storyform.py                                                                                                                                                     master
-> mv formsubmit.py storyformsubmit.py                                                                                                                                         master
-> mv deletesubmit.py storydeletesubmit.py                                                                                                                                     master
-> cp storyform.py taskform.py                                                                                                                                                 master
-> cp storyformsubmit.py taskformsubmit.py                                                                                                                                     master
-> cp storydeletesubmit.py taskdeletesubmit.py                                                                                                                                 master
+> mv form.py storyform.py
+> mv formsubmit.py storyformsubmit.py
+> mv deletesubmit.py storydeletesubmit.py
+> cp storyform.py taskform.py
+> cp storyformsubmit.py taskformsubmit.py
+> cp storydeletesubmit.py taskdeletesubmit.py
 ```
 **step04の様に正しく遷移するためには、ソースコードの修正も必要です**
 ##タスクのデータベースを作成して初期データを投入してみましょう
