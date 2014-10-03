@@ -58,3 +58,5 @@ todo.db
 db.sqlite3
 
 .DS_Store
+*.zip
+.vagrant

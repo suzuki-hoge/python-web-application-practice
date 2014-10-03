@@ -26,7 +26,7 @@ class Story(models.Model):
 *todo/models.py*
 ```Python
 from django.utils import dateformat
-
+~~
 def __unicode__(self):
 	end = dateformat.format(self.end, 'n/d H:i')
 	status = self.get_status_display()
@@ -67,4 +67,4 @@ def __unicode__(self):
 <a id='story_create' href='/story/create'><img height='16px' width='16px' src='https://raw.githubusercontent.com/tenshiPure/pyweb/master/django/step04/images/plus.png'></a>
 ```
 [http://localhost:8000/story](http://localhost:8000/story)  
-[最終画面イメージ](https://github.com/tenshiPure/pyweb/blob/master/django/step03/images/last.png)
+[最終画面イメージ](https://github.com/tenshiPure/pyweb/blob/master/django/step04/images/last.png)

@@ -7,6 +7,11 @@ djangoアプリを作成して管理画面を操作してみましょう
 ##step04
 見た目や挙動を整えてみましょう
   
+###djangoセットアップ
+・zipファイルの[ダウンロード](https://github.com/django/django/zipball/master)
+・Vagrantfileがあるディレクトリに*django.zip*という名前で保存する
+・Vagrantfileがあるディレクトリでvagrant up --provisionを実行する
+  
 ###step数の違う新しいディレクトリを作る方法
 ・step0xのディレクトリをstep0yとしてコピーする  
 ・step0yが内包するstep0xディレクトリをリネームする  

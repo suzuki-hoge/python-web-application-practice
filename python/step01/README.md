@@ -17,7 +17,7 @@ CGIHTTPServer.test()
 print "Content-type: text/html\n"
 print 'my first app'
 ```
-**権限を755にする必要があります**  
+**list.pyの権限を755にする必要があります**  
 [http://localhost:8000/cgi-bin/list.py](http://localhost:8000/cgi-bin/list.py)
 ##GETパラメータを拾えるようにしてみましょう
 *cgi-bin/list.py*
