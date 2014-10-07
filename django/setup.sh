@@ -18,11 +18,13 @@ ln -s /usr/local/bin/python2.7 /usr/local/bin/python
 rm -rf /home/vagrant/Python-2.7.8*
 
 cd /tmp
-wget http://peak.telecommunity.com/dist/ez_setup.py
-python ez_setup.py
-easy_install pip
+wget -q http://peak.telecommunity.com/dist/ez_setup.py
+/usr/local/bin/python ez_setup.py
+/usr/local/bin/easy_install pip
 
-cd /vagrant
+mv /vagrant/django.zip /tmp
+cd /tmp
 unzip django.zip 
-cd django-django-32c7d3c
-python setup.py install
+#cd django-django-32c7d3c
+cd django-django-*
+/usr/local/bin/python setup.py install

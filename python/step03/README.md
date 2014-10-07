@@ -63,6 +63,7 @@ sql = "update story set body = '%s', end = '%s', status = '%s' where id = %s" % 
 cursor = db.cursor()
 cursor.execute(sql)
 ```
+**内容や日付を入力しないでsendボタンを押すとどうなるか確認しましょう**  
 [http://localhost:8000/cgi-bin/form.py?id=1](http://localhost:8000/cgi-bin/form.py?id=1)
 ##削除処理を作ってみましょう
 *cgi-bin/deletesubmit.py*

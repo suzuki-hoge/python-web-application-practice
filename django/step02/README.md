@@ -91,6 +91,7 @@ url(r'^story/delete/(?P<pk>\d+)$',
 	<input type='submit' value='send'>
 </form>
 ```
+**追加・編集・削除がそれぞれ動作することを確認しましょう**  
+**内容や日付を入力しないでsendボタンを押すとどうなるか確認しましょう**  
 [http://localhost:8000/story/create](http://localhost:8000/story/create)  
 [http://localhost:8000/story/update/1](http://localhost:8000/story/update/1)
-**追加・編集・削除がそれぞれ動作することを確認しましょう**
