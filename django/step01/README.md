@@ -4,7 +4,7 @@
 > cd step01
 > python manage.py runserver
 ```
-[http://localhost:8000/](http://localhost:8000/)
+[http://localhost:18000/](http://localhost:18000/)
 ##Djangoアプリケーションを作成してモデル定義をしてみましょう
 ```Bash
 > python manage.py startapp todo
@@ -46,4 +46,4 @@ admin.site.register(Task)
 def __unicode__(self):
     return '%s : %s' % (self.id, self.body)
 ```
-[http://localhost:8000/admin](http://localhost:8000/admin)
+[http://localhost:18000/admin](http://localhost:18000/admin)

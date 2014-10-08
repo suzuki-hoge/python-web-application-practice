@@ -27,7 +27,7 @@ url(r'^story/$', ListView.as_view(
 	<hr>
 {% endfor %}
 ```
-[http://localhost:8000/story/](http://localhost:8000/story/)
+[http://localhost:18000/story/](http://localhost:18000/story/)
 ##ストーリを追加・編集・削除する画面をそれぞれ作成してみましょう
 *step02/urls.py*
 ```Python
@@ -58,8 +58,8 @@ url(r'^story/delete/(?P<pk>\d+)$',
 ```
 **生成されたHTMLを確認してみましょう**  
 **削除画面はまだ確認できません**  
-[http://localhost:8000/story/create](http://localhost:8000/story/create)  
-[http://localhost:8000/story/update/1](http://localhost:8000/story/update/1)
+[http://localhost:18000/story/create](http://localhost:18000/story/create)  
+[http://localhost:18000/story/update/1](http://localhost:18000/story/update/1)
 ##各種ボタンを配置してみましょう
 *template/story/index.html*
 ```HTML
@@ -82,7 +82,7 @@ url(r'^story/delete/(?P<pk>\d+)$',
 
 <a href='/story/create'>story-create</a>
 ```
-[http://localhost:8000/story/](http://localhost:8000/story/)  
+[http://localhost:18000/story/](http://localhost:18000/story/)  
 *template/story/form.html*
 ```HTML
 <form action='/story/form/' method='post'>
@@ -93,5 +93,5 @@ url(r'^story/delete/(?P<pk>\d+)$',
 ```
 **追加・編集・削除がそれぞれ動作することを確認しましょう**  
 **内容や日付を入力しないでsendボタンを押すとどうなるか確認しましょう**  
-[http://localhost:8000/story/create](http://localhost:8000/story/create)  
-[http://localhost:8000/story/update/1](http://localhost:8000/story/update/1)
+[http://localhost:18000/story/create](http://localhost:18000/story/create)  
+[http://localhost:18000/story/update/1](http://localhost:18000/story/update/1)

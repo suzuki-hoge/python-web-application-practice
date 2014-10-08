@@ -62,5 +62,5 @@ class TaskCreateView(CreateView):
 **タスクをストーリに紐付けるために、標準の*CreateView*ではなく**  
 **独自拡張した*TaskCreateView*を作成しています**  
 **どの様にストーリに紐付けているか確認しておきましょう**  
-[http://localhost:8000/story/](http://localhost:8000/story/)  
+[http://localhost:18000/story/](http://localhost:18000/story/)  
 [画面イメージ](https://github.com/tenshiPure/pyweb/blob/master/django/step03/images/index.png)  

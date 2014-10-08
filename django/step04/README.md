@@ -9,10 +9,10 @@ STATUS = (
 
 status = models.IntegerField(choices = STATUS)
 ```
-[http://localhost:8000/story/create](http://localhost:8000/story/create)  
-[http://localhost:8000/story/update/1](http://localhost:8000/story/update/1)  
-[http://localhost:8000/task/create/1](http://localhost:8000/task/create/1)  
-[http://localhost:8000/task/update/1](http://localhost:8000/task/update/1)  
+[http://localhost:18000/story/create](http://localhost:18000/story/create)  
+[http://localhost:18000/story/update/1](http://localhost:18000/story/update/1)  
+[http://localhost:18000/task/create/1](http://localhost:18000/task/create/1)  
+[http://localhost:18000/task/update/1](http://localhost:18000/task/update/1)  
 ##ストーリごとのタスクを期限順で取得できるようにしておきましょう
 *todo/models.py*
 ```Python
@@ -33,7 +33,7 @@ def __unicode__(self):
 	return '%s ( %s ) [ %s ]' % (end, status, self.body)
 ```
 **管理画面が変わっていることを確認しましょう**  
-[http://localhost:8000/admin](http://localhost:8000/admin)  
+[http://localhost:18000/admin](http://localhost:18000/admin)  
 ##HTMLを整理して画面を整えましょう
 *template/story/index.html*
 ```HTML
@@ -66,5 +66,5 @@ def __unicode__(self):
 
 <a id='story_create' href='/story/create'><img height='16px' width='16px' src='https://raw.githubusercontent.com/tenshiPure/pyweb/master/django/step04/images/plus.png'></a>
 ```
-[http://localhost:8000/story](http://localhost:8000/story)  
+[http://localhost:18000/story](http://localhost:18000/story)  
 [最終画面イメージ](https://github.com/tenshiPure/pyweb/blob/master/django/step04/images/last.png)
