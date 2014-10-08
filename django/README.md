@@ -7,10 +7,8 @@ djangoアプリを作成して管理画面を操作してみましょう
 ##step04
 見た目や挙動を整えてみましょう
   
-###djangoセットアップ
-・zipファイルの[ダウンロード](https://github.com/django/django/zipball/master)  
-・Vagrantfileがあるディレクトリに*django.zip*という名前で保存する  
-・Vagrantfileがあるディレクトリでvagrant up --provisionを実行する
+###django環境セットアップ
+Vagrantfileがあるディレクトリでvagrant up --provisionを実行する
   
 ###djangoプロジェクトのサーバの起動方法
 python manage.py runserver 0.0.0.0:8000
