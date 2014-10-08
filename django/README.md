@@ -13,9 +13,6 @@ Vagrantfileがあるディレクトリでvagrant up --provisionを実行する
 ###djangoプロジェクトのサーバの起動方法
 python manage.py runserver 0.0.0.0:8000
   
-###djangoプロジェクトのデータベース作成方法
-python manage.py syncdb
-  
 ###step数の違う新しいディレクトリを作る方法
 ・step0xのディレクトリをstep0yとしてコピーする  
 ・step0yが内包するstep0xディレクトリをリネームする  
