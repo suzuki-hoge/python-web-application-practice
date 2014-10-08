@@ -22,9 +22,8 @@ wget -q http://peak.telecommunity.com/dist/ez_setup.py
 /usr/local/bin/python ez_setup.py
 /usr/local/bin/easy_install pip
 
-mv /vagrant/django.zip /tmp
 cd /tmp
-unzip django.zip 
-#cd django-django-32c7d3c
-cd django-django-*
+wget https://github.com/django/django/archive/master.zip
+unzip master.zip
+cd /tmp/django-master
 /usr/local/bin/python setup.py install
