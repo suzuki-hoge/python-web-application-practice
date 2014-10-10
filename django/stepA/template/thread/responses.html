@@ -1,0 +1,7 @@
+スレッド名：{{ thread.title }}
+{% for response in thread.response_set.all %}
+	<p>{{ response.id }} / {{ response.creator }}</p>
+	<p>{{ response.contents|linebreaks }}</p>
+{% endfor %}
+
+<p><a href='/response/create/{{ thread.id }}'>create</a></p>

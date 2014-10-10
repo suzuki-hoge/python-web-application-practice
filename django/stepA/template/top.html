@@ -1,0 +1,4 @@
+{% for thread in thread_list %}
+	<p>{{ thread }}({{ thread.get_response_num }}) / <a href='/thread/{{ thread.id }}'>レスポンス一覧</a> / <a href='/thread/update/{{ thread.id }}'>update</a></p>
+{% endfor %}
+<p><a href='/thread/create'>create</a></p>

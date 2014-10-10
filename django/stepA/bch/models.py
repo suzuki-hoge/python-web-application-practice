@@ -7,6 +7,14 @@ class Thread(models.Model):
 	update_date = models.DateTimeField(auto_now = True)
 
 	#
+	# レスの数を返す関数
+	#
+	@property
+	def get_response_num(self):
+		return len(self.response_set.all())
+
+
+	#
 	# 管理画面等で {{ thread }} とやると表示される文字列
 	#
 	def __unicode__(self):
