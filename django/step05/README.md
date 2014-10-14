@@ -32,6 +32,39 @@
 
 todo ディレクトリの下に static ディレクトリを作り、その下に入手した css, fonts, js を配備します。
 また、正しく設定されたかどうかを確かめるために、Bootstrap の Getting Started で公開されている HTML のテンプレートを index.html として配備します。
+
+このとき、index.html 内で href="css/bootstrap.min.css" は href="/static/css/bootstrap.min.css" に、src="js/bootstrap.min.js" は src="/static/js/bootstrap.min.js" に変更することを忘れないでください。
+修正後のHTMLのテンプレートは次の通りです。
+
+```html
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <h1>Hello, world!</h1>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/static/js/bootstrap.min.js"></script>
+  </body>
+</html>
+```
 結果、todo 以下のディレクトリ構成は以下の通りになります。
 
 ```sh
@@ -60,6 +93,18 @@ todo ディレクトリの下に static ディレクトリを作り、その下�
     ├── views.py
 ```
 
+http://localhost:18000/static/index.html にアクセスしてみましょう。
+Hello, world! と表示されていること、Dev tools でエラーが表示されていないことを確認しましょう。
+
+## 実装しよう
+
+最初に[Django テンプレート言語](http://docs.djangoproject.jp/en/latest/topics/templates.html)のテンプレートの継承について学びます。
+
+template ディレクトリに base.html を追加します。先ほどの HTML テンプレートを流用しています。
+{% block title %}{% endblock %}
+{% block body %}{% endblock %}
+を追記しています。
+
 ```html
 <!DOCTYPE html>
 <html lang="ja">
@@ -67,7 +112,7 @@ todo ディレクトリの下に static ディレクトリを作り、その下�
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
+    <title>{% block title %}Bootstrap 101 Template{% endblock %}</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -80,7 +125,9 @@ todo ディレクトリの下に static ディレクトリを作り、その下�
     <![endif]-->
   </head>
   <body>
+    {% block body %}
     <h1>Hello, world!</h1>
+    {% endblock %}
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -90,10 +137,46 @@ todo ディレクトリの下に static ディレクトリを作り、その下�
 </html>
 ```
 
-http://localhost:18000/static/index.html にアクセスしてみましょう。
-Hello, world! と表示されていること、Dev tools でエラーが表示されていないことを確認しましょう。
+その上で、template 以下のファイルが、この base.html を継承するよう、修正します。
+例えば、template/story/index.html を次のように修正してみましょう。
+{% extends "base.html" %}, {% block title %}...{% endblock %}, {% block body %}...{% endblock %}をそれぞれ挿入しています。
 
-## 実装しよう
+```html
+{% extends "base.html" %}
+{% block title %}Story{% endblock %}
+{% block body %}
+{% for story in story_list %}
+	<dl>
+		<dt>
+			<form action='/story/delete/{{ story.id }}' method='post'>
+				{{ story }}
+				{% csrf_token %}
+				<a id='story_update_{{ story.id }}' href='/story/update/{{ story.id }}'><img height='16px' width='16px' src='https://raw.githubusercontent.com/tenshiPure/pyweb/master/django/step04/images/edit.png'></a>
+				<input id='story_delete_{{ story.id }}' type='image' height='16px' width='16px' src='https://raw.githubusercontent.com/tenshiPure/pyweb/master/django/step04/images/trash.png'>
+			</form>
+		</dt>
+		{% for task in story.sorted_tasks %}
+			<dd>
+				<form action='/task/delete/{{ task.id }}' method='post'>
+					{{ task }}
+					{% csrf_token %}
+					<a id='task_update_{{ task.id }}' href='/task/update/{{ task.id }}'><img height='16px' width='16px' src='https://raw.githubusercontent.com/tenshiPure/pyweb/master/django/step04/images/edit.png'></a>
+					<input id='task_delete_{{ task.id }}' type='image' height='16px' width='16px' src='https://raw.githubusercontent.com/tenshiPure/pyweb/master/django/step04/images/trash.png'>
+				</form>
+			</dd>
+		{% endfor %}
+		<dd>
+			<a id='task_create' href='/task/create/{{ story.id }}'><img height='16px' width='16px' src='https://raw.githubusercontent.com/tenshiPure/pyweb/master/django/step04/images/plus.png'></a>
+		</dd>
+	</dl>
+	<hr>
+{% endfor %}
+
+<a id='story_create' href='/story/create'><img height='16px' width='16px' src='https://raw.githubusercontent.com/tenshiPure/pyweb/master/django/step04/images/plus.png'></a>
+{% endblock %}
+```
+
+http://localhost:18000/story/ を開いて、ページのソースを確認してみよう。
 
 - 復習: [Bootstrap 3.0 入門](http://dotinstall.com/lessons/basic_twitter_bootstrap_v4)
 
