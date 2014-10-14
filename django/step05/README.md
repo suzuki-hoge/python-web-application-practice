@@ -20,6 +20,8 @@
 
 どうすれば良くなるか「仮説」を立てよう。
 
+- 仮説: Story の追加と Task の追加で、別々のアイコンを使うべきだ（なぜなら、利用者が迷ってしまうから）
+
 ## 実現方法を調査しよう
 
 - [Bootstrap](http://getbootstrap.com/)
@@ -101,9 +103,7 @@ Hello, world! と表示されていること、Dev tools でエラーが表示�
 最初に[Django テンプレート言語](http://docs.djangoproject.jp/en/latest/topics/templates.html)のテンプレートの継承について学びます。
 
 template ディレクトリに base.html を追加します。先ほどの HTML テンプレートを流用しています。
-{% block title %}{% endblock %}
-{% block body %}{% endblock %}
-を追記しています。
+{% block title %}...{% endblock %}, {% block body %}...{% endblock %} を追記しています。
 
 ```html
 <!DOCTYPE html>
