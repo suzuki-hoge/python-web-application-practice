@@ -20,7 +20,7 @@
 
 どうすれば良くなるか「仮説」を立てよう。
 
-- 仮説: Story の追加と Task の追加で、別々のアイコンを使うべきだ（なぜなら、利用者が迷ってしまうから）
+- 仮説の例: Story の追加と Task の追加で、別々のアイコンを使うべきだ（なぜなら、利用者が迷ってしまうから）
 
 ## 実現方法を調査しよう
 
@@ -95,8 +95,8 @@ todo ディレクトリの下に static ディレクトリを作り、その下�
     ├── views.py
 ```
 
-http://localhost:18000/static/index.html にアクセスしてみましょう。
-Hello, world! と表示されていること、Dev tools でエラーが表示されていないことを確認しましょう。
+[http://localhost:18000/static/index.html](http://localhost:18000/static/index.html) にアクセスしてみましょう。
+Hello, world! と表示されていること、Web ブラウザーの Dev tools でエラーが表示されていないことを確認しましょう。
 
 ## 実装しよう
 
@@ -176,7 +176,18 @@ template ディレクトリに base.html を追加します。先ほどの HTML 
 {% endblock %}
 ```
 
-http://localhost:18000/story/ を開いて、ページのソースを確認してみよう。
+template ディレクトリ以下は次のようになります。
+```sh
+├── template
+│   ├── base.html
+│   ├── story
+│   │   ├── form.html
+│   │   └── index.html
+│   └── task
+│       └── form.html
+```
+
+[http://localhost:18000/story/](http://localhost:18000/story/) を開いて、ページのソースを確認してみよう。
 
 - 復習: [Bootstrap 3.0 入門](http://dotinstall.com/lessons/basic_twitter_bootstrap_v4)
 
