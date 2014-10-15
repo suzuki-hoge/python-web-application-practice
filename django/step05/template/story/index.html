@@ -1,10 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Story{% endblock %}
+{% block body %}
 {% for story in story_list %}
 	<dl>
 		<dt>
 			<form action='/story/delete/{{ story.id }}' method='post'>
 				{{ story }}
 				{% csrf_token %}
-				<a id='story_update_{{ story.id }}' href='/story/update/{{ story.id }}'><img height='16px' width='16px' src='https://raw.githubusercontent.com/tenshiPure/pyweb/master/django/step04/images/edit.png'></a>
+				<a href='/story/update/{{ story.id }}'><img height='16px' width='16px' src='https://raw.githubusercontent.com/tenshiPure/pyweb/master/django/step04/images/edit.png'></a>
 				<input id='story_delete_{{ story.id }}' type='image' height='16px' width='16px' src='https://raw.githubusercontent.com/tenshiPure/pyweb/master/django/step04/images/trash.png'>
 			</form>
 		</dt>
@@ -19,10 +22,15 @@
 			</dd>
 		{% endfor %}
 		<dd>
-			<a id='task_create' href='/task/create/{{ story.id }}'><img height='16px' width='16px' src='https://raw.githubusercontent.com/tenshiPure/pyweb/master/django/step04/images/plus.png'></a>
+			<a class="btn btn-info" href="/task/create/{{ story.id }}">
+                <span class="glyphicon glyphicon-plus"></span>タスク追加
+            </a>
 		</dd>
 	</dl>
 	<hr>
 {% endfor %}
 
-<a id='story_create' href='/story/create'><img height='16px' width='16px' src='https://raw.githubusercontent.com/tenshiPure/pyweb/master/django/step04/images/plus.png'></a>
+<a class="btn btn-primary" href="/story/create">
+    <span class="glyphicon glyphicon-plus"></span>ストーリー追加
+</a>
+{% endblock %}

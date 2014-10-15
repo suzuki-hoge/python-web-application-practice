@@ -187,9 +187,45 @@ template ディレクトリ以下は次のようになります。
 │       └── form.html
 ```
 
-[http://localhost:18000/story/](http://localhost:18000/story/) を開いて、ページのソースを確認してみよう。
+[http://localhost:18000/story/](http://localhost:18000/story/) を開いて、ページのソースを確認しよう。
 
-- 復習: [Bootstrap 3.0 入門](http://dotinstall.com/lessons/basic_twitter_bootstrap_v4)
+準備ができたら、実装してみよう。
+
+- 復習: [#08 Glyphiconsとボタンを使ってみよう](http://dotinstall.com/lessons/basic_twitter_bootstrap_v4/24708)
+
+template/story/index.html の追加アイコンを修正し、「＋ストーリーを追加」「＋タスクを追加」に分けて表示する。
+(なお、テンプレートの継承に必要な宣言は先に追加している前提)
+
+修正前：
+```html
+...
+<dl>
+...
+  <dd>
+    <a id='task_create' href='/task/create/{{ story.id }}'><img height='16px' width='16px' src='https://raw.githubusercontent.com/tenshiPure/pyweb/master/django/step04/images/plus.png'></a>
+  </dd>
+</dl>
+...
+<a id='story_create' href='/story/create'><img height='16px' width='16px' src='https://raw.githubusercontent.com/tenshiPure/pyweb/master/django/step04/images/plus.png'></a>
+```
+
+修正後：
+```html
+...
+<dl>
+...
+  <dd>
+    <a class="btn btn-info" href="/task/create/{{ story.id }}">
+      <span class="glyphicon glyphicon-plus"></span>タスク追加
+    </a>
+  </dd>
+...
+<a class="btn btn-primary" href="/story/create">
+    <span class="glyphicon glyphicon-plus"></span>ストーリー追加
+</a>
+```
+
+[http://localhost:18000/story/](http://localhost:18000/story/) を開いて画面を確認しよう。
 
 ## 挑戦してみよう
 
