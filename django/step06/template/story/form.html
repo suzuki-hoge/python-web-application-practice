@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Story{% endblock %}
+{% block body %}
+<form action='' method='post'>
+	{{ form.as_p }}
+	{% csrf_token %}
+	<input type='submit' value='send'>
+</form>
+{% endblock %}
