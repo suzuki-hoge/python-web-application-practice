@@ -1,5 +1,7 @@
+#!/usr/local/bin/python
+
 """
-WSGI config for step02 project.
+WSGI config for step06 project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
