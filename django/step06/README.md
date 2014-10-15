@@ -1,12 +1,63 @@
 # Step06
 
 この章では Apache を使って Django で作った Web アプリを動作させる。
+- ゲスト OS で Django を動かす（復習）。
 - ゲスト OS で Apache を動かす（復習）。
 - ゲスト OS で Apache + mod_wsgi + Django を動かす。
 - 公開用サーバを設定する。
 - 公開用サーバにデプロイする。
 
+## ゲスト OS で Django を動かす（復習）。
+
+ゲスト OS で Django を動かすまでの処理は setup.sh に記載してある。Vagrantfile の provision shell に指定してあるので、vagrant up --provision としたときに sudo で実行されている。
+
+Vagrantfile:
+
+```ruby
+  config.vm.provision :shell, :path => "setup.sh"
+```
+
+公開用サーバの設定にも必要になるので、ここで内容を確認しておく。
+
+setup.sh:
+```sh
+#!/bin/sh
+
+# yum を最新にしておく。-y は yes を自動入力するコマンド
+yum update -y
+# 開発をするために必要となるツール一式をインストールする
+yum groupinstall "Development tools" -y
+# python のコンパイルなどに必要となるツール一式をインストールする
+yum install wget zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel -y
+
+# python のインストール
+cd /usr/local/src
+wget -q https://www.python.org/ftp/python/2.7.8/Python-2.7.8.tgz
+tar xvfz Python-2.7.8.tgz
+cd Python-2.7.8
+./configure --with-threads --enable-shared
+make
+make altinstall
+echo '/usr/local/lib' > /etc/ld.so.conf.d/python2.7.conf
+ldconfig
+ln -s /usr/local/bin/python2.7 /usr/local/bin/python
+
+# pip のインストール。python のパッケージ管理をする。
+cd /tmp
+wget -q http://peak.telecommunity.com/dist/ez_setup.py
+/usr/local/bin/python ez_setup.py
+/usr/local/bin/easy_install pip
+
+# django の最新版をインストールする。
+cd /tmp
+wget -q https://github.com/django/django/archive/master.zip
+unzip master.zip
+cd /tmp/django-master
+/usr/local/bin/python setup.py install
+```
+
 ## ゲスト OS で Apache を動かす（復習）。
+
 ゲスト OS の 80 番ポートで Apache (httpd) を動かす。
 ホスト OS の 8080 番ポートへのアクセスを、ゲスト OS の 80 番ポートに転送するため、Vagrantfile を修正する。
 
@@ -130,4 +181,27 @@ Alias /static/ /vagrant/step06/todo/static/
 Web ブラウザーから [http://localhost:8080/story](http://localhost:8080/story) にアクセスして、Web アプリが使えることを確認する。
 
 ## 公開用サーバを設定する。
+
+演習1: ssh でログインするために、鍵を作ってください。秘密鍵は厳重に管理してください。公開鍵と、使いたいアカウント名(英字)を私にください。
+
+演習2: いただいた公開鍵を使って、サーバインスタンスを作ります。その後、setup.sh などを参考に、サーバの設定をしてください。iptablesは私が設定しておきます。
+
+[ ] ssh でログインできた。
+[ ] python 2.7.8 がインストールできた。
+[ ] Django 1.8 がインストールできた。
+[ ] Apache 2.2.15 がインストールできた。
+
+```sh
+$ python --version
+Python 2.7.8
+$ python
+>>> import django
+>>> django.VERSION
+(1, 8, 0, 'alpha', 0)
+>>> exit()
+$ httpd -v
+Server version: Apache/2.2.15 (Unix)
+Server built:   Jul 23 2014 14:17:29
+```
+
 ## 公開用サーバにデプロイする。
