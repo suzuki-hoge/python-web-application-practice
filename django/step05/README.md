@@ -104,6 +104,7 @@ Hello, world! と表示されていること、Web ブラウザーの Dev tools 
 
 template ディレクトリに base.html を追加します。先ほどの HTML テンプレートを流用しています。
 {% block title %}...{% endblock %}, {% block body %}...{% endblock %} を追記しています。
+また、css, js の URL の先頭に /static/ をつけています。
 
 ```html
 <!DOCTYPE html>
@@ -115,7 +116,7 @@ template ディレクトリに base.html を追加します。先ほどの HTML 
     <title>{% block title %}Bootstrap 101 Template{% endblock %}</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -132,7 +133,7 @@ template ディレクトリに base.html を追加します。先ほどの HTML 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
   </body>
 </html>
 ```
@@ -226,6 +227,7 @@ template/story/index.html の追加アイコンを修正し、「＋ストーリ
 ```
 
 [http://localhost:18000/story/](http://localhost:18000/story/) を開いて画面を確認しよう。
+[画面イメージ](https://raw.githubusercontent.com/takatama/pyweb/master/django/step05/images/btn.png)
 
 ## 挑戦してみよう
 
