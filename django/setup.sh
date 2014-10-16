@@ -34,5 +34,5 @@ yum install httpd httpd-devel -y
 #fi
 #cp /vagrant/httpd.conf /etc/httpd/conf/
 #cp /vagrant/wsgi.conf /etc/httpd/conf.d/
-#hkconfig httpd on
+#chkconfig httpd on
 #service httpd restart

@@ -212,7 +212,7 @@ Server version: Apache/2.2.15 (Unix)
 Server built:   Jul 23 2014 14:17:29
 ```
 
-~/.ssh/config を設定しておくと便利です。
+~/.ssh/config を設定しておくと便利。
 
 ```sh
 $ vi ~/.ssh/config
@@ -223,3 +223,10 @@ $ ssh <サーバの名前>
 ```
  
 ## 公開用サーバにデプロイする。
+
+- /var/www にアカウントが書き込む権限を与える。
+- rsync を使って、ローカルの pyweb/django/step06 を公開用サーバの /var/www/step06 としてコピーする。
+
+```sh
+$ rsync -r step06 133.208.24.36:/var/www
+```
