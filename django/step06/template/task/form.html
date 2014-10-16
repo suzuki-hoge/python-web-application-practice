@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Task{% endblock %}
+{% block body %}
+<form action='' method='post'>
+	{{ form.as_p }}
+	<input type='hidden' name='story_id' value='{{ story_id }}'>
+	{% csrf_token %}
+	<input type='submit' value='send'>
+</form>
+{% endblock %}
