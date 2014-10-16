@@ -228,5 +228,5 @@ $ ssh <サーバの名前>
 - rsync を使って、ローカルの pyweb/django/step06 を公開用サーバの /var/www/step06 としてコピーする。
 
 ```sh
-$ rsync -r step06 133.208.24.36:/var/www
+$ rsync -r step06 <IPアドレス>:/var/www
 ```
