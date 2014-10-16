@@ -136,7 +136,7 @@ Webブラウザーで[http://localhost:8080/](http://localhost:8080/)にアク�
 - ただし、インストールは [GrahamDumpleton/mod_wsgi](https://github.com/GrahamDumpleton/mod_wsgi) にある通り、pip を使うのが楽。事前に yum で http-devel をインストールしておく。
               
 ```sh
-[vagrant]$ sudo yum install http-devel -y
+[vagrant]$ sudo yum install httpd-devel -y
 [vagrant]$ sudo /usr/local/bin/pip install mod_wsgi
 ```
 
@@ -200,19 +200,19 @@ Web ブラウザーから [http://localhost:8080/story](http://localhost:8080/st
 - (Web アプリの場所が正しく設定された) httpd.conf を配備できた。
 
 ```sh
-$ python --version
+[サーバ]$ python --version
 Python 2.7.8
-$ python
+[サーバ]$ python
 >>> import django
 >>> django.VERSION
 (1, 8, 0, 'alpha', 0)
 >>> exit()
-$ httpd -v
+[サーバ]$ httpd -v
 Server version: Apache/2.2.15 (Unix)
 Server built:   Jul 23 2014 14:17:29
 ```
 
-~/.ssh/config を設定しておくと便利。
+ローカルで~/.ssh/config を設定しておくと便利。
 
 ```sh
 $ vi ~/.ssh/config
@@ -224,9 +224,115 @@ $ ssh <サーバの名前>
  
 ## 公開用サーバにデプロイする。
 
-- /var/www にアカウントが書き込む権限を与える。
-- rsync を使って、ローカルの pyweb/django/step06 を公開用サーバの /var/www/step06 としてコピーする。
+### /var/www に書き込めるようにする。
+
+最初は、/var/www はオーナーが root, グループが root になっている。
 
 ```sh
-$ rsync -r step06 <IPアドレス>:/var/www
+[サーバ]$ ls -ld /var/www
+drwxr-xr-x 6 root root 4096 2014-10-15 10:25 /var/www
+
+```
+
+httpd は apache アカウントで動いている。
+
+```sh
+[サーバ]$ ps -ef | grep httpd
+[サーバ]$ ps -ef | grep httpd
+root     19634     1  0 09:25 ?        00:00:00 /usr/sbin/httpd
+apache   19636 19634  0 09:25 ?        00:00:00 /usr/sbin/httpd
+apache   19637 19634  0 09:25 ?        00:00:00 /usr/sbin/httpd
+apache   19638 19634  0 09:25 ?        00:00:00 /usr/sbin/httpd
+apache   19639 19634  0 09:25 ?        00:00:00 /usr/sbin/httpd
+apache   19640 19634  0 09:25 ?        00:00:00 /usr/sbin/httpd
+apache   19641 19634  0 09:25 ?        00:00:00 /usr/sbin/httpd
+apache   19642 19634  0 09:25 ?        00:00:00 /usr/sbin/httpd
+apache   19643 19634  0 09:25 ?        00:00:00 /usr/sbin/httpd
+<自分のアカウント> 19709 19690  0 10:57 pts/1    00:00:00 grep httpd
+```
+
+/var/www のオーナー:グループを、apache:apache に変更する。
+
+```sh
+[サーバ]$ sudo chown -R apache:apache /var/www
+[サーバ]$ ls -ld /var/www
+drwxr-xr-x 7 apache apache 4096 Oct 16 09:21 /var/www
+```
+
+自分を apache グループに追加して、/var/www に書き込めるようにする。
+
+```sh
+[サーバ]$ sudo usermod -G apache <自分のアカウント>
+cat /etc/group | grep apache
+apache:x:48:<自分のアカウント>
+
+[サーバ]$ sudo chmod -R g+w /var/www
+[サーバ]$ ls -ld /var/www
+drwxrwxr-x 7 apache apache 4096 Oct 16 09:21 /var/www
+```
+
+### ローカルからサーバにデプロイする
+
+rsync を使って、ローカルの pyweb/django/step06 を公開用サーバの /var/www/step06 としてコピーする。事故防止のため、いきなり実行せずに、--dry-run してからコピーする。
+
+- -n --dry-run コピーを実行せずに処理内容を表示
+- -v --verbose 詳細なメッセージを表示
+- -r --recursive ディレクトリを再帰的にコピーする
+- -u --update コピー先がコピー元より古い場合にコピーする
+- --exclude=PATTERN PATTERN にマッチしたファイルはコピーしない
+
+```sh
+$ pwd
+/Users/takatama/python/pyweb/django
+$ rsync -nvru --exclude="*.sqlite3" --exclude="*.pyc" --exclude="*.md" step06 <IPアドレス>:/var/www
+building file list ... done
+step06/
+step06/manage.py
+step06/images/
+step06/images/edit.png
+step06/images/index.png
+step06/images/last.png
+step06/images/plus.png
+step06/images/trash.png
+step06/step06/
+step06/step06/__init__.py
+step06/step06/settings.py
+step06/step06/urls.py
+step06/step06/wsgi.py
+step06/template/
+step06/template/base.html
+step06/template/story/
+step06/template/story/form.html
+step06/template/story/index.html
+step06/template/task/
+step06/template/task/form.html
+step06/todo/
+step06/todo/__init__.py
+step06/todo/admin.py
+step06/todo/models.py
+step06/todo/tests.py
+step06/todo/views.py
+step06/todo/static/
+step06/todo/static/index.html
+step06/todo/static/css/
+step06/todo/static/css/bootstrap-theme.css
+step06/todo/static/css/bootstrap-theme.css.map
+step06/todo/static/css/bootstrap-theme.min.css
+step06/todo/static/css/bootstrap.css
+step06/todo/static/css/bootstrap.css.map
+step06/todo/static/css/bootstrap.min.css
+step06/todo/static/fonts/
+step06/todo/static/fonts/glyphicons-halflings-regular.eot
+step06/todo/static/fonts/glyphicons-halflings-regular.svg
+step06/todo/static/fonts/glyphicons-halflings-regular.ttf
+step06/todo/static/fonts/glyphicons-halflings-regular.woff
+step06/todo/static/js/
+step06/todo/static/js/bootstrap.js
+step06/todo/static/js/bootstrap.min.js
+
+sent 1123 bytes  received 278 bytes  2802.00 bytes/sec
+total size is 988692  speedup is 705.70
+(期待通りか確認する)
+
+$ rsync -ru --exclude="*.sqlite3" --exclude="*.pyc" --exclude="*.md" step06 <IPアドレス>:/var/www
 ```
