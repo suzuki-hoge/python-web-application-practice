@@ -34,7 +34,7 @@ class TaskCreateView(CreateView):
 		fk = self.kwargs.get('fk')
 		story = Story.objects.get(pk = fk)
 		self.object = form.save(commit = False)
-		self.object.storyId = story
+		self.object.story = story
 		self.object.save()
 
 		return redirect(self.success_url)

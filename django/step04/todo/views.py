@@ -16,10 +16,3 @@ class TaskCreateView(CreateView):
 		self.object.save()
 
 		return redirect(self.success_url)
-
-	def get_context_data(self, **kwargs):
-		context = super(TaskCreateView, self).get_context_data(**kwargs)
-
-		context['story_id'] = 1
-
-		return context

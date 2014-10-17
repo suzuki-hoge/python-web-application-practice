@@ -17,7 +17,7 @@ url(r'^story/$', ListView.as_view(
 	),
 ),
 ```
-*tempate/story/index.html*
+*template/story/index.html*
 ```HTML
 {% for story in story_list %}
 	<p>{{ story.body }}</p>

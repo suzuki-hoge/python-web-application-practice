@@ -1,5 +1,3 @@
-from django.shortcuts import render
-
 from django.shortcuts import redirect
 from django.views.generic import CreateView
 from bch.models import *
