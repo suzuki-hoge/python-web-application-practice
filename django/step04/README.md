@@ -43,8 +43,8 @@ def __unicode__(self):
 			<form action='/story/delete/{{ story.id }}' method='post'>
 				{{ story }}
 				{% csrf_token %}
-				<a id='story_update_{{ story.id }}' href='/story/update/{{ story.id }}'><img height='16px' width='16px' src='https://raw.githubusercontent.com/tenshiPure/pyweb/master/django/step04/images/edit.png'></a>
-				<input id='story_delete_{{ story.id }}' type='image' height='16px' width='16px' src='https://raw.githubusercontent.com/tenshiPure/pyweb/master/django/step04/images/trash.png'>
+				<a id='story_update_{{ story.id }}' href='/story/update/{{ story.id }}'><img height='16px' width='16px' src='https://raw.githubusercontent.com/suzuki-hoge/webapp-tutorial/master/django/step04/images/edit.png'></a>
+				<input id='story_delete_{{ story.id }}' type='image' height='16px' width='16px' src='https://raw.githubusercontent.com/suzuki-hoge/webapp-tutorial/master/django/step04/images/trash.png'>
 			</form>
 		</dt>
 		{% for task in story.sorted_tasks %}
@@ -52,19 +52,19 @@ def __unicode__(self):
 				<form action='/task/delete/{{ task.id }}' method='post'>
 					{{ task }}
 					{% csrf_token %}
-					<a id='task_update_{{ task.id }}' href='/task/update/{{ task.id }}'><img height='16px' width='16px' src='https://raw.githubusercontent.com/tenshiPure/pyweb/master/django/step04/images/edit.png'></a>
-					<input id='task_delete_{{ task.id }}' type='image' height='16px' width='16px' src='https://raw.githubusercontent.com/tenshiPure/pyweb/master/django/step04/images/trash.png'>
+					<a id='task_update_{{ task.id }}' href='/task/update/{{ task.id }}'><img height='16px' width='16px' src='https://raw.githubusercontent.com/suzuki-hoge/webapp-tutorial/master/django/step04/images/edit.png'></a>
+					<input id='task_delete_{{ task.id }}' type='image' height='16px' width='16px' src='https://raw.githubusercontent.com/suzuki-hoge/webapp-tutorial/master/django/step04/images/trash.png'>
 				</form>
 			</dd>
 		{% endfor %}
 		<dd>
-			<a id='task_create' href='/task/create/{{ story.id }}'><img height='16px' width='16px' src='https://raw.githubusercontent.com/tenshiPure/pyweb/master/django/step04/images/plus.png'></a>
+			<a id='task_create' href='/task/create/{{ story.id }}'><img height='16px' width='16px' src='https://raw.githubusercontent.com/suzuki-hoge/webapp-tutorial/master/django/step04/images/plus.png'></a>
 		</dd>
 	</dl>
 	<hr>
 {% endfor %}
 
-<a id='story_create' href='/story/create'><img height='16px' width='16px' src='https://raw.githubusercontent.com/tenshiPure/pyweb/master/django/step04/images/plus.png'></a>
+<a id='story_create' href='/story/create'><img height='16px' width='16px' src='https://raw.githubusercontent.com/suzuki-hoge/webapp-tutorial/master/django/step04/images/plus.png'></a>
 ```
 [http://localhost:18000/story](http://localhost:18000/story)  
-[最終画面イメージ](https://github.com/tenshiPure/pyweb/blob/master/django/step04/images/last.png)
+[最終画面イメージ](https://github.com/suzuki-hoge/webapp-tutorial/blob/master/django/step04/images/last.png)

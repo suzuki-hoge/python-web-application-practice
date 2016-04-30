@@ -152,8 +152,8 @@ template ディレクトリに base.html を追加します。先ほどの HTML 
 			<form action='/story/delete/{{ story.id }}' method='post'>
 				{{ story }}
 				{% csrf_token %}
-				<a id='story_update_{{ story.id }}' href='/story/update/{{ story.id }}'><img height='16px' width='16px' src='https://raw.githubusercontent.com/tenshiPure/pyweb/master/django/step04/images/edit.png'></a>
-				<input id='story_delete_{{ story.id }}' type='image' height='16px' width='16px' src='https://raw.githubusercontent.com/tenshiPure/pyweb/master/django/step04/images/trash.png'>
+				<a id='story_update_{{ story.id }}' href='/story/update/{{ story.id }}'><img height='16px' width='16px' src='https://raw.githubusercontent.com/suzuki-hoge/webapp-tutorial/master/django/step04/images/edit.png'></a>
+				<input id='story_delete_{{ story.id }}' type='image' height='16px' width='16px' src='https://raw.githubusercontent.com/suzuki-hoge/webapp-tutorial/master/django/step04/images/trash.png'>
 			</form>
 		</dt>
 		{% for task in story.sorted_tasks %}
@@ -161,19 +161,19 @@ template ディレクトリに base.html を追加します。先ほどの HTML 
 				<form action='/task/delete/{{ task.id }}' method='post'>
 					{{ task }}
 					{% csrf_token %}
-					<a id='task_update_{{ task.id }}' href='/task/update/{{ task.id }}'><img height='16px' width='16px' src='https://raw.githubusercontent.com/tenshiPure/pyweb/master/django/step04/images/edit.png'></a>
-					<input id='task_delete_{{ task.id }}' type='image' height='16px' width='16px' src='https://raw.githubusercontent.com/tenshiPure/pyweb/master/django/step04/images/trash.png'>
+					<a id='task_update_{{ task.id }}' href='/task/update/{{ task.id }}'><img height='16px' width='16px' src='https://raw.githubusercontent.com/suzuki-hoge/webapp-tutorial/master/django/step04/images/edit.png'></a>
+					<input id='task_delete_{{ task.id }}' type='image' height='16px' width='16px' src='https://raw.githubusercontent.com/suzuki-hoge/webapp-tutorial/master/django/step04/images/trash.png'>
 				</form>
 			</dd>
 		{% endfor %}
 		<dd>
-			<a id='task_create' href='/task/create/{{ story.id }}'><img height='16px' width='16px' src='https://raw.githubusercontent.com/tenshiPure/pyweb/master/django/step04/images/plus.png'></a>
+			<a id='task_create' href='/task/create/{{ story.id }}'><img height='16px' width='16px' src='https://raw.githubusercontent.com/suzuki-hoge/webapp-tutorial/master/django/step04/images/plus.png'></a>
 		</dd>
 	</dl>
 	<hr>
 {% endfor %}
 
-<a id='story_create' href='/story/create'><img height='16px' width='16px' src='https://raw.githubusercontent.com/tenshiPure/pyweb/master/django/step04/images/plus.png'></a>
+<a id='story_create' href='/story/create'><img height='16px' width='16px' src='https://raw.githubusercontent.com/suzuki-hoge/webapp-tutorial/master/django/step04/images/plus.png'></a>
 {% endblock %}
 ```
 
@@ -203,11 +203,11 @@ template/story/index.html の追加アイコンを修正し、「＋ストーリ
 <dl>
 ...
   <dd>
-    <a id='task_create' href='/task/create/{{ story.id }}'><img height='16px' width='16px' src='https://raw.githubusercontent.com/tenshiPure/pyweb/master/django/step04/images/plus.png'></a>
+    <a id='task_create' href='/task/create/{{ story.id }}'><img height='16px' width='16px' src='https://raw.githubusercontent.com/suzuki-hoge/webapp-tutorial/master/django/step04/images/plus.png'></a>
   </dd>
 </dl>
 ...
-<a id='story_create' href='/story/create'><img height='16px' width='16px' src='https://raw.githubusercontent.com/tenshiPure/pyweb/master/django/step04/images/plus.png'></a>
+<a id='story_create' href='/story/create'><img height='16px' width='16px' src='https://raw.githubusercontent.com/suzuki-hoge/webapp-tutorial/master/django/step04/images/plus.png'></a>
 ```
 
 修正後：
