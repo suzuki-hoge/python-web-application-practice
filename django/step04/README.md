@@ -1,4 +1,4 @@
-##ステータスを文字列にしてみましょう
+## ステータスを文字列にしてみましょう
 *todo/models.py*
 ```Python
 STATUS = (
@@ -13,7 +13,7 @@ status = models.IntegerField(choices = STATUS)
 [http://localhost:18000/story/update/1](http://localhost:18000/story/update/1)  
 [http://localhost:18000/task/create/1](http://localhost:18000/task/create/1)  
 [http://localhost:18000/task/update/1](http://localhost:18000/task/update/1)  
-##ストーリごとのタスクを期限順で取得できるようにしておきましょう
+## ストーリごとのタスクを期限順で取得できるようにしておきましょう
 *todo/models.py*
 ```Python
 class Story(models.Model):
@@ -22,7 +22,7 @@ class Story(models.Model):
 	def sorted_tasks(self):
 		return self.task_set.order_by('end')
 ```
-##モデルに出力フォーマットを定義してみましょう
+## モデルに出力フォーマットを定義してみましょう
 *todo/models.py*
 ```Python
 from django.utils import dateformat
@@ -34,7 +34,7 @@ def __unicode__(self):
 ```
 **管理画面が変わっていることを確認しましょう**  
 [http://localhost:18000/admin](http://localhost:18000/admin)  
-##HTMLを整理して画面を整えましょう
+## HTMLを整理して画面を整えましょう
 *template/story/index.html*
 ```HTML
 {% for story in story_list %}

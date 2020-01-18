@@ -1,4 +1,4 @@
-##一覧表示をする画面を作成してみましょう
+## 一覧表示をする画面を作成してみましょう
 *step02/settings.py*
 ```Python
 TEMPLATE_DIRS = ( 
@@ -28,7 +28,7 @@ url(r'^story/$', ListView.as_view(
 {% endfor %}
 ```
 [http://localhost:18000/story/](http://localhost:18000/story/)
-##ストーリを追加・編集・削除する画面をそれぞれ作成してみましょう
+## ストーリを追加・編集・削除する画面をそれぞれ作成してみましょう
 *step02/urls.py*
 ```Python
 url(r'^story/create/$', CreateView.as_view(
@@ -60,7 +60,7 @@ url(r'^story/delete/(?P<pk>\d+)$',
 **削除画面はまだ確認できません**  
 [http://localhost:18000/story/create](http://localhost:18000/story/create)  
 [http://localhost:18000/story/update/1](http://localhost:18000/story/update/1)
-##各種ボタンを配置してみましょう
+## 各種ボタンを配置してみましょう
 *template/story/index.html*
 ```HTML
 {% for story in story_list %}

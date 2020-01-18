@@ -1,4 +1,4 @@
-##Djangoアプリケーションを作成してみましょう
+## Djangoアプリケーションを作成してみましょう
 ```Bash
 > django-admin.py startproject step01
 > cd step01
@@ -30,7 +30,7 @@ foo/bar/django/step01
     └── views.py
 ```
 
-##モデル定義をしてみましょう
+## モデル定義をしてみましょう
 *todo/models.py*
 ```Python
 class Story(models.Model):
@@ -61,7 +61,7 @@ INSTALLED_APPS = (
 ```
 **migrateはモデル定義を基にcreate table文を発行するコマンドです**  
 **ここで発行されるSQLは使用するDBによって異なります（デフォルト設定はSqlite3です）**
-##管理画面でストーリを編集できるようにしてみましょう
+## 管理画面でストーリを編集できるようにしてみましょう
 *todo/admin.py*
 ```Python
 from todo.models import *

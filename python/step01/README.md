@@ -1,4 +1,4 @@
-##pythonの組み込みサーバを立ててみましょう
+## pythonの組み込みサーバを立ててみましょう
 *run.py*
 ```Python
 import CGIHTTPServer
@@ -10,7 +10,7 @@ CGIHTTPServer.test()
 <p>Hello world</p>
 ```
 [http://localhost:8000/](http://localhost:8000/)
-##URLごとに違うpythonスクリプトを実行できるようにしてみましょう
+## URLごとに違うpythonスクリプトを実行できるようにしてみましょう
 *cgi-bin/list.py*
 ```Python
 #!/usr/bin/env python
@@ -19,7 +19,7 @@ print 'my first app'
 ```
 **list.pyの権限を755にする必要があります**  
 [http://localhost:8000/cgi-bin/list.py](http://localhost:8000/cgi-bin/list.py)
-##GETパラメータを拾えるようにしてみましょう
+## GETパラメータを拾えるようにしてみましょう
 *cgi-bin/list.py*
 ```Python
 import cgi

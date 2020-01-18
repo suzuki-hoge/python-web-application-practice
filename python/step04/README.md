@@ -1,4 +1,4 @@
-##一覧画面の出力を整形してみましょう
+## 一覧画面の出力を整形してみましょう
 *cgi-bin/list.py*
 ```Python
 for row in rows:
@@ -10,7 +10,7 @@ for row in rows:
     print '<hr>'
 ```
 [http://localhost:8000/cgi-bin/list.py](http://localhost:8000/cgi-bin/list.py)
-##ステータスを数値から文字列に置き換えてみましょう
+## ステータスを数値から文字列に置き換えてみましょう
 *cgi-bin/list.py*
 ```Python
 if row[3] == 1:
@@ -30,7 +30,7 @@ print "<option value='3' %s>done</option>" % ('selected' if status == 3 else '')
 print '</select>'
 ```
 [http://localhost:8000/cgi-bin/form.py?id=1](http://localhost:8000/cgi-bin/form.py?id=1)
-##画面遷移をするボタンを配置してみましょう
+## 画面遷移をするボタンを配置してみましょう
 *cgi-bin/list.py*
 ```Python
 print "<a href='form.py?id=%s'>update</a>" % id

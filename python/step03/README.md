@@ -1,4 +1,4 @@
-##画面に一覧を表示してみましょう
+## 画面に一覧を表示してみましょう
 *cgi-bin/list.py*
 ```Python
 rows = db.execute('select * from story')
@@ -6,14 +6,14 @@ for row in rows:
     print '<p>%s</p>' % str(row)
 ```
 [http://localhost:8000/cgi-bin/list.py](http://localhost:8000/cgi-bin/list.py)
-##画面に詳細を表示してみましょう
+## 画面に詳細を表示してみましょう
 *cgi-bin/list.py*
 ```Python
 id = form.getvalue('id', '')
 rows = db.execute('select * from story where id = %s' % id)
 ```
 [http://localhost:8000/cgi-bin/list.py?id=1](http://localhost:8000/cgi-bin/list.py?id=1)
-##追加する画面を作ってみましょう
+## 追加する画面を作ってみましょう
 *cgi-bin/form.py*
 ```Python
 print "<form method='post' action='formsubmit.py'>"
@@ -27,7 +27,7 @@ print "</form>"
 **id指定がないので空の入力欄を表示するだけでOKです**  
 **sendボタンを押すとlocalhost:8000/cgi-bin/formsubmit.pyに遷移すれば成功です(404になります）**
 [http://localhost:8000/cgi-bin/form.py](http://localhost:8000/cgi-bin/form.py)
-##追加の保存処理を作ってみましょう
+## 追加の保存処理を作ってみましょう
 *cgi-bin/formsubmit.py*
 ```Python
 import os
@@ -43,7 +43,7 @@ print "<meta http-equiv='refresh' content='0;URL=http://localhost:8000/cgi-bin/l
 ```
 **sendボタンを押してlocalhost:8000/cgi-bin/list.pyに戻ってくれば成功です**
 [http://localhost:8000/cgi-bin/form.py](http://localhost:8000/cgi-bin/form.py)
-##編集する画面を作ってみましょう
+## 編集する画面を作ってみましょう
 *cgi-bin/form.py*
 ```Python
 print "<form method='post' action='formsubmit.py'>"
@@ -56,7 +56,7 @@ print "</form>"
 ```
 **id指定がある場合は、指定idでselectをして初期値として設定しましょう**  
 [http://localhost:8000/cgi-bin/form.py?id=1](http://localhost:8000/cgi-bin/form.py?id=1)
-##編集の保存処理を作ってみましょう
+## 編集の保存処理を作ってみましょう
 *cgi-bin/formsubmit.py*
 ```Python
 sql = "update story set body = '%s', end = '%s', status = '%s' where id = %s" % (body, end, status, id)
@@ -65,7 +65,7 @@ cursor.execute(sql)
 ```
 **内容や日付を入力しないでsendボタンを押すとどうなるか確認しましょう**  
 [http://localhost:8000/cgi-bin/form.py?id=1](http://localhost:8000/cgi-bin/form.py?id=1)
-##削除処理を作ってみましょう
+## 削除処理を作ってみましょう
 *cgi-bin/deletesubmit.py*
 ```Python
 sql = "delete from story where id = %s" % id

@@ -1,4 +1,4 @@
-##タスクを追加・編集・削除する画面をそれぞれ作成してみましょう
+## タスクを追加・編集・削除する画面をそれぞれ作成してみましょう
 *step02/urls.py*
 ```Python
 url(r'^task/create/(?P<fk>\d+)/$', TaskCreateView.as_view()),
